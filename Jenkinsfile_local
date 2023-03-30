@@ -4,7 +4,7 @@ node{
     }
 
     stage('2. Maven build'){
-        sh "mvn clean package -f DevOps/helloworld/pom.xml"
+        sh "mvn clean package"
     }
 
     stage('3. Build Docker image'){

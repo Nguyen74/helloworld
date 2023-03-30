@@ -12,11 +12,11 @@ node{
     }
 
     stage('4. Remove container'){
-        sh "docker rm -f web-hello"
+        sh "docker rm -f hiholahello"
     }
 
     stage('5. Deploy Docker image to Tomcat'){
-        sh "docker run -p 23456:8080 -d --name web-hello nbpn123/nguyennguyen"
+        sh "docker run -p 23456:8080 -d --name hiholahello nbpn123/nguyennguyen"
     }
 
     stage('6. Upload Docker to Docker repo'){

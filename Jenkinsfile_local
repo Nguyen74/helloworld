@@ -1,5 +1,6 @@
 node{
     stage('1. SCM Checkout'){
+        deleteDir()
         sh "git clone https://github.com/Nguyen74/helloworld.git"
     }
 
@@ -8,7 +9,7 @@ node{
     }
 
     stage('3. Build Docker image'){
-        sh "docker build -t nbpn123/nguyennguyen ."
+        sh "docker build -t nbpn123/nguyennguyen helloworld"
     }
 
     stage('4. Remove container'){
@@ -20,6 +21,11 @@ node{
     }
 
     stage('6. Upload Docker to Docker repo'){
-        sh "docker push nbpn123/nguyennguyen"
-    }
+    // This step should not normally be used in your script. Consult the inline help for details.
+        withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://index.docker.io/v1/') {
+            sh "docker push nbpn123/nguyennguyen"
+        }
+        
+     }
+    
 }

@@ -9,7 +9,7 @@ node{
     }
 
     stage('3. Build Docker image'){
-        sh "docker build -t nbpn123/nguyennguyen helloworld"
+        sh "docker build -t nbpn123/test1 helloworld"
     }
 
     stage('4. Remove container'){
@@ -17,13 +17,13 @@ node{
     }
 
     stage('5. Deploy Docker image to Tomcat'){
-        sh "docker run -p 4444:8080 -d --name docker_demo nbpn123/nguyennguyen"
+        sh "docker run -p 4444:8080 -d --name docker_demo nbpn123/test1"
     }
 
     stage('6. Upload Docker to Docker repo'){
     // This step should not normally be used in your script. Consult the inline help for details.
         withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://index.docker.io/v1/') {
-            sh "docker push nbpn123/nguyennguyen"
+            sh "docker push nbpn123/test1"
         }
         
      }

@@ -17,7 +17,7 @@ node{
     }
 
     stage('5. Deploy Docker image to Tomcat'){
-        sh "docker run -it -p 4444:8080 -d --name docker_demo nbpn123/nguyennguyen"
+        sh "docker run -p 4444:8080 -d --name docker_demo nbpn123/nguyennguyen"
     }
 
     stage('6. Upload Docker to Docker repo'){
